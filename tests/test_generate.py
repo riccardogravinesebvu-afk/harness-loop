@@ -33,6 +33,12 @@ def _table(dup_a01=0.1):
     return f
 
 
+@pytest.fixture(autouse=True)
+def optimizer_model(monkeypatch):
+    # a fresh clone has no .env: the tests name the model themselves
+    monkeypatch.setenv("OPTIMIZER_MODEL", "claude-sonnet-4-6")
+
+
 @pytest.fixture(scope="module")
 def con(tmp_path_factory):
     return sqlite3.connect(ledger.build_db(tmp_path_factory.mktemp("db") / "ledger.sqlite"))

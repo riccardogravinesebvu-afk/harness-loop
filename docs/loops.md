@@ -40,7 +40,9 @@ Then three failures in a row, which is why the budget rule fired.
 
 Nothing accepted. €0.39 and €1.24.
 ([`085216`](../evals/results/loops/2026-09-17T085216+0000.json),
-[`085632`](../evals/results/loops/2026-09-17T085632+0000.json))
+[`085632`](../evals/results/loops/2026-09-17T085632+0000.json);
+baselines [`085218`](../evals/results/2026-09-17T085218+0000.json) and
+[`085633`](../evals/results/2026-09-17T085633+0000.json), 87% visible and 80% holdout both times)
 
 | loop | n | hypothesis | verdict | visible | holdout |
 |---|---|---|---|---|---|
@@ -66,7 +68,8 @@ It is covered by unit tests and nothing else.
 ## Loop 4, with feedback
 
 Max-iterations stop, €0.90.
-([`162024`](../evals/results/loops/2026-09-17T162024+0000.json))
+([`162024`](../evals/results/loops/2026-09-17T162024+0000.json),
+baseline [`162025`](../evals/results/2026-09-17T162025+0000.json))
 
 Before starting it I flagged a failing run through the feedback endpoint: `L09`, "List the customers
 based in Italy", failing since loop 1, with the note "the answer lists nobody; country is stored as a
@@ -127,7 +130,8 @@ Addressed below.
 ## Loop 5, with holdout confirmation
 
 Budget stop, nothing accepted, €1.27.
-([`165112`](../evals/results/loops/2026-09-17T165112+0000.json))
+([`165112`](../evals/results/loops/2026-09-17T165112+0000.json),
+baseline [`165113`](../evals/results/2026-09-17T165113+0000.json))
 
 First, the fix: a hypothesis that passes the gate now gets the ten holdout cases re-run a second time
 (about $0.10) and is kept only if that run holds too. The lower of the two becomes the bar for the

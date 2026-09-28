@@ -1,5 +1,7 @@
 # harness-loop
 
+[![ci](https://github.com/riccardogravinesebvu-afk/harness-loop/actions/workflows/ci.yml/badge.svg)](https://github.com/riccardogravinesebvu-afk/harness-loop/actions/workflows/ci.yml)
+
 An optimizer agent that improves another agent by iterating on evals. It proposes one hypothesis,
 edits a prompt file on a git branch, re-runs the eval suite, keeps the change or rolls it back, and
 records the result. Then it does it again, until the gains stop paying for themselves.
@@ -39,8 +41,8 @@ inside the loops, €2.59 in standalone runs), one results file per evaluated it
 | | total | visible | holdout | |
 |---|---|---|---|---|
 | starting prompt | 45% | 47% | 40% | [file](evals/results/2026-09-16T143601+0000.json) |
-| after the loop, judge v1, 40 cases | 87% | 94% | 67% | mean of 3 replications |
-| same prompts, judge v2, 44 cases | 91% | 97% | 70% | mean of 3 replications |
+| after the loop, judge v1, 40 cases | 87% | 94% | 67% | mean of 3 replications: [1](evals/results/2026-09-17T163541+0000.json), [2](evals/results/2026-09-17T164030+0000.json), [3](evals/results/2026-09-17T164128+0000.json) |
+| same prompts, judge v2, 44 cases | 91% | 97% | 70% | mean of 3 replications: [1](evals/results/2026-09-17T202749+0000.json), [2](evals/results/2026-09-17T202856+0000.json), [3](evals/results/2026-09-17T203003+0000.json) |
 | plus one hypothesis accepted by hand over the gate | 98% | 100% | 90% | [file](evals/results/2026-09-17T212958+0000.json) |
 
 Rows two and three are the same agent measured two ways: the 4-point difference between them is the
@@ -134,7 +136,7 @@ just feedback          # the feedback endpoint on :8765
 ```
 
 The loop refuses to start on a dirty working tree, so every number is committed alongside the code
-that produced it. This public repository is a single-commit snapshot of the working repository: the
+that produced it. This public repository is a snapshot of the working repository: the
 per-hypothesis branches and the SHAs in `CHANGELOG.md` and in each results file are not published
 here; the results files are. Accepted hypotheses fast-forward `main`; rejected ones leave their branch as
 `hyp/<n>` and only the evidence lands on `main`.

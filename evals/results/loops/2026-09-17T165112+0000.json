@@ -1,0 +1,168 @@
+{
+  "loop_id": "2026-09-17T165112+0000",
+  "started": "2026-09-17T165112+0000",
+  "git_sha_start": "ddbe113",
+  "params": {
+    "max_iterations": 5,
+    "max_total_eur": 2.0,
+    "min_gain_per_eur": 0.03,
+    "window": 3,
+    "feedback_weight": 2.0,
+    "tolerance": {
+      "lookup": 0.14285714285714285,
+      "aggregation": 0.14285714285714285,
+      "reasoning": 0.125,
+      "refusal": 0.125
+    },
+    "seed": 42
+  },
+  "models": {
+    "agent": "claude-haiku-4-5-20251001",
+    "judge": "claude-sonnet-4-6",
+    "optimizer": "claude-sonnet-4-6"
+  },
+  "iterations": [
+    {
+      "n": 0,
+      "hyp_id": null,
+      "sha": "ddbe113",
+      "target": null,
+      "title": "baseline",
+      "verdict": "baseline",
+      "reason": null,
+      "visible": 0.9677,
+      "holdout": 0.7,
+      "per_category_visible": {
+        "aggregation": 1.0,
+        "lookup": 1.0,
+        "reasoning": 0.875,
+        "refusal": 1.0
+      },
+      "visible_delta": null,
+      "holdout_delta": null,
+      "delta_cases": {},
+      "cost_eur": {
+        "eval": 0.2644,
+        "optimizer": 0.0,
+        "total": 0.2644
+      },
+      "cumulative_eur": 0.2644,
+      "results_file": "evals/results/2026-09-17T165113+0000.json",
+      "best_visible": 0.9677
+    },
+    {
+      "n": 14,
+      "hyp_id": "hyp/14",
+      "sha": "dd4875a",
+      "target": "system.md",
+      "title": "Teach agent to include payment date when describing paid invoices in reliability analysis",
+      "verdict": "rejected: no_gain",
+      "reason": "no_gain",
+      "visible": 0.9032,
+      "holdout": 0.6,
+      "per_category_visible": {
+        "aggregation": 1.0,
+        "lookup": 1.0,
+        "reasoning": 0.625,
+        "refusal": 1.0
+      },
+      "visible_delta": -0.0645,
+      "holdout_delta": -0.09999999999999998,
+      "holdout_confirm": null,
+      "delta_cases": {
+        "lookup": 0,
+        "aggregation": 0,
+        "reasoning": -2,
+        "refusal": 0
+      },
+      "cost_eur": {
+        "eval": 0.2948,
+        "optimizer": 0.0369,
+        "total": 0.3317
+      },
+      "cumulative_eur": 0.5961,
+      "results_file": "evals/results/2026-09-17T165238+0000.json",
+      "best_visible": 0.9677
+    },
+    {
+      "n": 15,
+      "hyp_id": "hyp/15",
+      "sha": "8285f7a",
+      "target": "system.md",
+      "title": "Teach agent to include payment date and proximity to due date when analyzing payment reliability",
+      "verdict": "rejected: no_gain",
+      "reason": "no_gain",
+      "visible": 0.9032,
+      "holdout": 0.7,
+      "per_category_visible": {
+        "aggregation": 1.0,
+        "lookup": 1.0,
+        "reasoning": 0.625,
+        "refusal": 1.0
+      },
+      "visible_delta": -0.0645,
+      "holdout_delta": 0.0,
+      "holdout_confirm": null,
+      "delta_cases": {
+        "lookup": 0,
+        "aggregation": 0,
+        "reasoning": -2,
+        "refusal": 0
+      },
+      "cost_eur": {
+        "eval": 0.3062,
+        "optimizer": 0.0376,
+        "total": 0.3438
+      },
+      "cumulative_eur": 0.9399,
+      "results_file": "evals/results/2026-09-17T165404+0000.json",
+      "best_visible": 0.9677
+    },
+    {
+      "n": 16,
+      "hyp_id": "hyp/16",
+      "sha": "e836bf9",
+      "target": "system.md",
+      "title": "Teach agent to fetch payment dates when assessing payment reliability",
+      "verdict": "rejected: no_gain",
+      "reason": "no_gain",
+      "visible": 0.9032,
+      "holdout": 0.7,
+      "per_category_visible": {
+        "aggregation": 1.0,
+        "lookup": 1.0,
+        "reasoning": 0.625,
+        "refusal": 1.0
+      },
+      "visible_delta": -0.0645,
+      "holdout_delta": 0.0,
+      "holdout_confirm": null,
+      "delta_cases": {
+        "lookup": 0,
+        "aggregation": 0,
+        "reasoning": -2,
+        "refusal": 0
+      },
+      "cost_eur": {
+        "eval": 0.2899,
+        "optimizer": 0.0404,
+        "total": 0.3303
+      },
+      "cumulative_eur": 1.2702,
+      "results_file": "evals/results/2026-09-17T165534+0000.json",
+      "best_visible": 0.9677
+    }
+  ],
+  "stop": {
+    "reason": "budget",
+    "at": 16
+  },
+  "feedback": {
+    "FB01": {
+      "ref": "L09",
+      "note": "Asked for customers in Italy: the answer lists nobody. The ledger has Italian customers; country is stored as a code, not a name.",
+      "flagged_before_iteration": 14,
+      "recovered_at_iteration": null
+    }
+  }
+}

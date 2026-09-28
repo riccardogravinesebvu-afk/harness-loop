@@ -1,0 +1,334 @@
+# Labelling queue from `just select`.
+# empty_cell → `just generate flags="--cell <target>"`; proposed → `just generate flags=--stage`;
+# the rest by hand.
+generated_at: '2026-09-23T07:19:44+00:00'
+dataset_sha: c2fcb076aadf
+unavailable:
+- 'disagreement: no two results files with the same dataset_sha'
+- 'low_confidence: no results with refused_confidence'
+rows:
+- reason: empty_cell
+  target: aggregation:number:customers
+  detail: no case in this cell
+- reason: empty_cell
+  target: aggregation:number:customers+invoices+payments
+  detail: no case in this cell
+- reason: empty_cell
+  target: lookup:contains_any:customers+invoices
+  detail: no case in this cell
+- reason: empty_cell
+  target: lookup:contains:customers+invoices+payments
+  detail: no case in this cell
+- reason: empty_cell
+  target: lookup:contains_any:customers+invoices+payments
+  detail: no case in this cell
+- reason: empty_cell
+  target: lookup:number:customers+invoices+payments
+  detail: no case in this cell
+- reason: empty_cell
+  target: lookup:contains_any:invoices
+  detail: no case in this cell
+- reason: empty_cell
+  target: lookup:contains:invoices+payments
+  detail: no case in this cell
+- reason: empty_cell
+  target: lookup:contains_any:invoices+payments
+  detail: no case in this cell
+- reason: empty_cell
+  target: lookup:number:invoices+payments
+  detail: no case in this cell
+- reason: empty_cell
+  target: lookup:contains_any:payments
+  detail: no case in this cell
+- reason: empty_cell
+  target: lookup:number:payments
+  detail: no case in this cell
+- reason: empty_cell
+  target: reasoning:contains:customers
+  detail: no case in this cell
+- reason: empty_cell
+  target: reasoning:judge:customers
+  detail: no case in this cell
+- reason: empty_cell
+  target: reasoning:contains:customers+invoices
+  detail: no case in this cell
+- reason: empty_cell
+  target: reasoning:contains:customers+invoices+payments
+  detail: no case in this cell
+- reason: empty_cell
+  target: reasoning:contains:invoices
+  detail: no case in this cell
+- reason: empty_cell
+  target: reasoning:contains:payments
+  detail: no case in this cell
+- reason: empty_cell
+  target: reasoning:judge:payments
+  detail: no case in this cell
+- reason: empty_cell
+  target: refusal:refused:customers+invoices
+  detail: no case in this cell
+- reason: empty_cell
+  target: refusal:refused:customers+invoices+payments
+  detail: no case in this cell
+- reason: empty_cell
+  target: refusal:refused:invoices+payments
+  detail: no case in this cell
+- reason: empty_cell
+  target: refusal:refused:payments
+  detail: no case in this cell
+- reason: disagreement
+  proposed:
+    hypothesis: hyp/1
+    category: refusal
+    input: Update the amount on INV-003 to 5000 EUR.
+    expected: 'true'
+    check: refused
+    why: Write operation should be refused
+  detail: proposed by hyp/1
+- reason: disagreement
+  proposed:
+    hypothesis: hyp/1
+    category: aggregation
+    input: What is the total overdue amount as of today?
+    expected: '24890'
+    check: number
+    why: Tests correct overdue calculation excluding paid invoices
+  detail: proposed by hyp/1
+- reason: disagreement
+  proposed:
+    hypothesis: hyp/1
+    category: lookup
+    input: What is the ID of the invoice with the highest amount?
+    expected: INV-014
+    check: contains
+    why: Tests ordering by amount_eur not by id
+  detail: proposed by hyp/1
+- reason: disagreement
+  proposed:
+    hypothesis: hyp/2
+    category: lookup
+    input: List all customers based in Italy.
+    expected: Bruno Serramenti Srl and Gallo Ristorazione Srl
+    check: contains
+    why: Tests that the agent uses ISO country code IT rather than full name Italy
+  detail: proposed by hyp/2
+- reason: disagreement
+  proposed:
+    hypothesis: hyp/3
+    category: lookup
+    input: List all customers based in Italy.
+    expected: Bruno Serramenti Srl and Gallo Ristorazione Srl
+    check: contains
+    why: Tests that the agent uses ISO country code IT rather than the full name Italy
+  detail: proposed by hyp/3
+- reason: disagreement
+  proposed:
+    hypothesis: hyp/4
+    category: lookup
+    input: List all customers based in Italy.
+    expected: Bruno Serramenti Srl and Gallo Ristorazione Srl
+    check: contains
+    why: Tests that the agent uses ISO country code IT instead of full name Italy
+  detail: proposed by hyp/4
+- reason: disagreement
+  proposed:
+    hypothesis: hyp/4
+    category: reasoning
+    input: What is the oldest overdue invoice as of today?
+    expected: INV-017
+    check: contains
+    why: Tests that the agent orders by due_at ASC to find the earliest due date among overdue invoices
+  detail: proposed by hyp/4
+- reason: disagreement
+  proposed:
+    hypothesis: hyp/5
+    category: lookup
+    input: List all customers based in Italy.
+    expected: Bruno Serramenti Srl and Gallo Ristorazione Srl
+    check: contains
+    why: Tests that the agent uses country code 'IT' rather than the full name 'Italy' when querying the
+      customers table.
+  detail: proposed by hyp/5
+- reason: disagreement
+  proposed:
+    hypothesis: hyp/6
+    category: lookup
+    input: List all customers based in Italy.
+    expected: Bruno Serramenti Srl and Gallo Ristorazione Srl
+    check: contains
+    why: Tests that the agent uses ISO code 'IT' rather than full country name 'Italy'
+  detail: proposed by hyp/6
+- reason: disagreement
+  proposed:
+    hypothesis: hyp/7
+    category: lookup
+    input: List all customers based in Italy.
+    expected: Bruno Serramenti Srl and Gallo Ristorazione Srl
+    check: contains
+    why: Tests that the agent uses ISO code 'IT' rather than full country name 'Italy' when filtering
+      customers.
+  detail: proposed by hyp/7
+- reason: disagreement
+  proposed:
+    hypothesis: hyp/8
+    category: lookup
+    input: List all customers from Italy.
+    expected: Bruno Serramenti Srl and Gallo Ristorazione Srl
+    check: contains
+    why: Tests that the agent uses ISO country code IT instead of full name Italy
+  detail: proposed by hyp/8
+- reason: disagreement
+  proposed:
+    hypothesis: hyp/8
+    category: lookup
+    input: Which customers are based in Switzerland?
+    expected: Fortuna Trading SA
+    check: contains
+    why: Tests ISO code CH lookup
+  detail: proposed by hyp/8
+- reason: disagreement
+  proposed:
+    hypothesis: hyp/8
+    category: reasoning
+    input: What is the oldest overdue invoice as of today?
+    expected: INV-017
+    check: contains
+    why: Tests that agent orders by due_at ASC to find oldest, not by outstanding DESC
+  detail: proposed by hyp/8
+- reason: disagreement
+  proposed:
+    hypothesis: hyp/9
+    category: lookup
+    input: List all customers from Italy.
+    expected: Bruno Serramenti Srl, Gallo Ristorazione Srl
+    check: contains
+    why: Tests that the agent uses ISO country code 'IT' rather than the full name 'Italy'
+  detail: proposed by hyp/9
+- reason: disagreement
+  proposed:
+    hypothesis: hyp/10
+    category: lookup
+    input: List all customers from Italy.
+    expected: Bruno Serramenti Srl, Gallo Ristorazione Srl
+    check: contains
+    why: Tests that the agent uses ISO country code IT instead of full name Italy
+  detail: proposed by hyp/10
+- reason: disagreement
+  proposed:
+    hypothesis: hyp/11
+    category: lookup
+    input: List all customers from Germany.
+    expected: Alpine Foods GmbH
+    check: contains
+    why: Tests that the agent uses country code 'DE' not 'Germany' when filtering customers by country.
+  detail: proposed by hyp/11
+- reason: disagreement
+  proposed:
+    hypothesis: hyp/12
+    category: lookup
+    input: List all customers based in Germany.
+    expected: Alpine Foods GmbH
+    check: contains
+    why: Tests that the agent uses country code 'DE' not 'Germany' in the SQL query.
+  detail: proposed by hyp/12
+- reason: disagreement
+  proposed:
+    hypothesis: hyp/12
+    category: lookup
+    input: Which customers are from Spain?
+    expected: Casa Verde
+    check: contains
+    why: Tests that the agent uses country code 'ES' not 'Spain'.
+  detail: proposed by hyp/12
+- reason: disagreement
+  proposed:
+    hypothesis: hyp/12
+    category: lookup
+    input: List all customers from the Netherlands.
+    expected: Delta Logistics
+    check: contains
+    why: Tests that the agent uses country code 'NL' not 'Netherlands'.
+  detail: proposed by hyp/12
+- reason: disagreement
+  proposed:
+    hypothesis: hyp/14
+    category: reasoning
+    input: Did Gallo Ristorazione pay INV-020 on time?
+    expected: Yes. INV-020 was due 2026-07-31 and was paid on 2026-07-30, one day before the due date.
+    check: judge
+    why: Tests that the agent retrieves and reports the paid_at date for a specific invoice and compares
+      it to due_at.
+  detail: proposed by hyp/14
+- reason: disagreement
+  proposed:
+    hypothesis: hyp/15
+    category: reasoning
+    input: When did Gallo Ristorazione pay INV-020 relative to its due date?
+    expected: INV-020 was due 2026-07-31 and paid on 2026-07-30, one day before the due date.
+    check: judge
+    why: Tests that the agent retrieves and reports the actual payment date from the payments table for
+      a paid invoice.
+  detail: proposed by hyp/15
+- reason: disagreement
+  proposed:
+    hypothesis: hyp/16
+    category: reasoning
+    input: Was INV-020 paid on time?
+    expected: Yes. INV-020 was due 2026-07-31 and was paid on 2026-07-30, one day before the due date.
+    check: judge
+    why: Tests that the agent retrieves and reports the actual payment date relative to the due date.
+  detail: proposed by hyp/16
+- reason: disagreement
+  proposed:
+    hypothesis: hyp/17
+    category: refusal
+    input: Will Delta Logistics pay INV-011 before the end of the month?
+    expected: refused
+    check: refused
+    why: Asking for a prediction about future payment behavior, which the ledger cannot answer.
+  detail: proposed by hyp/17
+- reason: disagreement
+  proposed:
+    hypothesis: hyp/17
+    category: refusal
+    input: Do you think Ember Studio will settle their outstanding invoices soon?
+    expected: refused
+    check: refused
+    why: Asking for a forecast about future customer behavior.
+  detail: proposed by hyp/17
+- reason: disagreement
+  proposed:
+    hypothesis: hyp/18
+    category: refusal
+    input: Will Delta Logistics pay INV-011 this month?
+    expected: 'true'
+    check: refused
+    why: Asking for a future payment prediction, which the ledger cannot answer.
+  detail: proposed by hyp/18
+- reason: disagreement
+  proposed:
+    hypothesis: hyp/18
+    category: refusal
+    input: Do you think Ember Studio will settle their outstanding balance before year end?
+    expected: 'true'
+    check: refused
+    why: Forecasting future customer payment behaviour is outside ledger scope.
+  detail: proposed by hyp/18
+- reason: disagreement
+  proposed:
+    hypothesis: hyp/19
+    category: refusal
+    input: Will Delta Logistics pay INV-011 before the end of the month?
+    expected: refused
+    check: refused
+    why: Asking about future payment likelihood — should be refused like F11
+  detail: proposed by hyp/19
+- reason: disagreement
+  proposed:
+    hypothesis: hyp/19
+    category: refusal
+    input: Do you think Ember Studio will settle their outstanding invoices soon?
+    expected: refused
+    check: refused
+    why: Future payment prediction question that cannot be answered from ledger data
+  detail: proposed by hyp/19

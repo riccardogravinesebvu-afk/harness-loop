@@ -1,0 +1,128 @@
+{
+  "loop_id": "2026-09-17T085216+0000",
+  "started": "2026-09-17T085216+0000",
+  "git_sha_start": "7dd369b",
+  "params": {
+    "max_iterations": 8,
+    "max_total_eur": 2.6,
+    "min_gain_per_eur": 0.03,
+    "window": 3,
+    "feedback_weight": 2.0,
+    "tolerance": {
+      "lookup": 0.14285714285714285,
+      "aggregation": 0.14285714285714285,
+      "reasoning": 0.125,
+      "refusal": 0.125
+    },
+    "seed": 42
+  },
+  "models": {
+    "agent": "claude-haiku-4-5-20251001",
+    "judge": "claude-sonnet-4-6",
+    "optimizer": "claude-sonnet-4-6"
+  },
+  "iterations": [
+    {
+      "n": 0,
+      "hyp_id": null,
+      "sha": "7dd369b",
+      "target": null,
+      "title": "baseline",
+      "verdict": "baseline",
+      "reason": null,
+      "visible": 0.8667,
+      "holdout": 0.8,
+      "per_category_visible": {
+        "aggregation": 1.0,
+        "lookup": 0.8571,
+        "reasoning": 0.625,
+        "refusal": 1.0
+      },
+      "visible_delta": null,
+      "holdout_delta": null,
+      "delta_cases": {},
+      "cost_eur": {
+        "eval": 0.2594,
+        "optimizer": 0.0,
+        "total": 0.2594
+      },
+      "cumulative_eur": 0.2594,
+      "results_file": "evals/results/2026-09-17T085218+0000.json",
+      "best_visible": 0.8667
+    },
+    {
+      "n": 5,
+      "hyp_id": "hyp/5",
+      "sha": "fc222c4",
+      "target": "system.md",
+      "title": "Fix country code lookup by teaching agent that country is stored as ISO 2-letter code",
+      "verdict": "rejected: leaks_expected L02:Switzerland",
+      "reason": "leaks_expected L02:Switzerland",
+      "visible": null,
+      "holdout": null,
+      "per_category_visible": null,
+      "visible_delta": null,
+      "holdout_delta": null,
+      "delta_cases": {},
+      "cost_eur": {
+        "eval": 0.0,
+        "optimizer": 0.0446,
+        "total": 0.0446
+      },
+      "cumulative_eur": 0.304,
+      "results_file": null,
+      "best_visible": 0.8667
+    },
+    {
+      "n": 6,
+      "hyp_id": "hyp/6",
+      "sha": "270ea33",
+      "target": "system.md",
+      "title": "Fix country code lookup and oldest-invoice ordering without leaking expected values",
+      "verdict": "rejected: leaks_expected L02:Switzerland",
+      "reason": "leaks_expected L02:Switzerland",
+      "visible": null,
+      "holdout": null,
+      "per_category_visible": null,
+      "visible_delta": null,
+      "holdout_delta": null,
+      "delta_cases": {},
+      "cost_eur": {
+        "eval": 0.0,
+        "optimizer": 0.0453,
+        "total": 0.0453
+      },
+      "cumulative_eur": 0.3493,
+      "results_file": null,
+      "best_visible": 0.8667
+    },
+    {
+      "n": 7,
+      "hyp_id": "hyp/7",
+      "sha": "995082c",
+      "target": "system.md",
+      "title": "Fix country code lookup and oldest-invoice ordering without leaking expected values",
+      "verdict": "rejected: leaks_expected L02:Switzerland",
+      "reason": "leaks_expected L02:Switzerland",
+      "visible": null,
+      "holdout": null,
+      "per_category_visible": null,
+      "visible_delta": null,
+      "holdout_delta": null,
+      "delta_cases": {},
+      "cost_eur": {
+        "eval": 0.0,
+        "optimizer": 0.0446,
+        "total": 0.0446
+      },
+      "cumulative_eur": 0.3939,
+      "results_file": null,
+      "best_visible": 0.8667
+    }
+  ],
+  "stop": {
+    "reason": "budget",
+    "at": 7
+  },
+  "feedback": {}
+}

@@ -1,0 +1,158 @@
+{
+  "loop_id": "2026-09-17T085632+0000",
+  "started": "2026-09-17T085632+0000",
+  "git_sha_start": "efa9057",
+  "params": {
+    "max_iterations": 8,
+    "max_total_eur": 2.2,
+    "min_gain_per_eur": 0.03,
+    "window": 3,
+    "feedback_weight": 2.0,
+    "tolerance": {
+      "lookup": 0.14285714285714285,
+      "aggregation": 0.14285714285714285,
+      "reasoning": 0.125,
+      "refusal": 0.125
+    },
+    "seed": 42
+  },
+  "models": {
+    "agent": "claude-haiku-4-5-20251001",
+    "judge": "claude-sonnet-4-6",
+    "optimizer": "claude-sonnet-4-6"
+  },
+  "iterations": [
+    {
+      "n": 0,
+      "hyp_id": null,
+      "sha": "efa9057",
+      "target": null,
+      "title": "baseline",
+      "verdict": "baseline",
+      "reason": null,
+      "visible": 0.8667,
+      "holdout": 0.8,
+      "per_category_visible": {
+        "aggregation": 1.0,
+        "lookup": 0.8571,
+        "reasoning": 0.625,
+        "refusal": 1.0
+      },
+      "visible_delta": null,
+      "holdout_delta": null,
+      "delta_cases": {},
+      "cost_eur": {
+        "eval": 0.2631,
+        "optimizer": 0.0,
+        "total": 0.2631
+      },
+      "cumulative_eur": 0.2631,
+      "results_file": "evals/results/2026-09-17T085633+0000.json",
+      "best_visible": 0.8667
+    },
+    {
+      "n": 8,
+      "hyp_id": "hyp/8",
+      "sha": "098aa91",
+      "target": "system.md",
+      "title": "Fix country code lookup (ISO 2-letter codes) and oldest-invoice ordering",
+      "verdict": "rejected: holdout",
+      "reason": "holdout",
+      "visible": 0.9667,
+      "holdout": 0.7,
+      "per_category_visible": {
+        "aggregation": 1.0,
+        "lookup": 1.0,
+        "reasoning": 0.875,
+        "refusal": 1.0
+      },
+      "visible_delta": 0.09999999999999998,
+      "holdout_delta": -0.10000000000000009,
+      "delta_cases": {
+        "lookup": 1,
+        "aggregation": 0,
+        "reasoning": 2,
+        "refusal": 0
+      },
+      "cost_eur": {
+        "eval": 0.2744,
+        "optimizer": 0.0454,
+        "total": 0.3198
+      },
+      "cumulative_eur": 0.5829,
+      "results_file": "evals/results/2026-09-17T085753+0000.json",
+      "best_visible": 0.8667
+    },
+    {
+      "n": 9,
+      "hyp_id": "hyp/9",
+      "sha": "391bf14",
+      "target": "system.md",
+      "title": "Fix country code lookup (ISO 2-letter codes) and oldest-invoice ordering by due_at ASC",
+      "verdict": "rejected: holdout",
+      "reason": "holdout",
+      "visible": 0.9667,
+      "holdout": 0.6,
+      "per_category_visible": {
+        "aggregation": 1.0,
+        "lookup": 1.0,
+        "reasoning": 0.875,
+        "refusal": 1.0
+      },
+      "visible_delta": 0.09999999999999998,
+      "holdout_delta": -0.20000000000000007,
+      "delta_cases": {
+        "lookup": 1,
+        "aggregation": 0,
+        "reasoning": 2,
+        "refusal": 0
+      },
+      "cost_eur": {
+        "eval": 0.2781,
+        "optimizer": 0.0455,
+        "total": 0.3236
+      },
+      "cumulative_eur": 0.9065,
+      "results_file": "evals/results/2026-09-17T085919+0000.json",
+      "best_visible": 0.8667
+    },
+    {
+      "n": 10,
+      "hyp_id": "hyp/10",
+      "sha": "3fc4b89",
+      "target": "system.md",
+      "title": "Fix country code lookup (ISO 2-letter codes) and oldest-invoice reasoning",
+      "verdict": "rejected: holdout",
+      "reason": "holdout",
+      "visible": 0.9667,
+      "holdout": 0.7,
+      "per_category_visible": {
+        "aggregation": 1.0,
+        "lookup": 1.0,
+        "reasoning": 0.875,
+        "refusal": 1.0
+      },
+      "visible_delta": 0.09999999999999998,
+      "holdout_delta": -0.10000000000000009,
+      "delta_cases": {
+        "lookup": 1,
+        "aggregation": 0,
+        "reasoning": 2,
+        "refusal": 0
+      },
+      "cost_eur": {
+        "eval": 0.29,
+        "optimizer": 0.045,
+        "total": 0.335
+      },
+      "cumulative_eur": 1.2416,
+      "results_file": "evals/results/2026-09-17T090045+0000.json",
+      "best_visible": 0.8667
+    }
+  ],
+  "stop": {
+    "reason": "budget",
+    "at": 10
+  },
+  "feedback": {}
+}

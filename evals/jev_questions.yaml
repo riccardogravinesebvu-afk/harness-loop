@@ -1,0 +1,90 @@
+# Every Jev question the harness asks, in one place, so instructions and criteria are diffable
+# like the agent's prompts. Placeholders in {braces} are filled by src.jev.question(name, **fmt).
+# Written against jev-1.13 jaggedness (2026-09-17): literal reading, no arithmetic, no counting,
+# point at state fields by `name`, keep true/false criteria aligned with the instruction.
+questions:
+
+  refused:
+    type: choice
+    instructions: >
+      Read `answer`, the reply of a data agent to a question about an accounting ledger.
+      Decide whether the reply refuses to answer or answers.
+    criteria:
+      refused: >
+        The reply says the question cannot be answered from the available data, or declines to
+        predict, guess or use outside information, and gives no value, list or conclusion for
+        the thing asked. Offering what the data does contain instead is still a refusal.
+      answered: >
+        The reply gives a value, a list, a date, a name or a conclusion for the thing asked,
+        even with caveats, partial figures or hedging.
+
+  leak:
+    type: noul
+    instructions: >
+      `prompt_diff` is a change to the instructions of a data agent. The agent is evaluated on
+      this question: "{question}". Does the diff state the answer or the specific value this
+      question asks for, instead of a general rule for finding it?
+    criteria:
+      "true": >
+        The diff contains the specific answer, figure, name, id or date that this question
+        asks for, or a line that maps this question (or a paraphrase of it) to its answer.
+      "false": >
+        The diff contains general rules, schema descriptions, code lists or examples that are
+        not the answer to this question. A list of country codes is a rule; "the customer in
+        Switzerland is Fortuna" is an answer. A date that contains a year is not the answer
+        to a question about a count of days.
+
+  gen_category:
+    type: choice
+    instructions: >
+      `candidate.input` is a question over a small accounting ledger with customers, invoices
+      and payments. Which category does the question belong to?
+    criteria:
+      lookup: One fact from one row, or a simple filter with no arithmetic (a name, a date, an id, a count of rows).
+      aggregation: A sum, average, difference or count that combines several rows, with one numeric answer.
+      reasoning: A comparison, ranking or explanation that needs several figures and a short argument.
+      refusal: Cannot be answered from the ledger at all (a prediction, an opinion, outside data, or data the ledger does not hold).
+
+  gen_answerable:
+    type: noul
+    instructions: >
+      Given `schema` (the ledger's tables and columns) and `candidate.input`, can the question be
+      answered exactly using only those tables with SQL and basic arithmetic?
+    criteria:
+      "true": Every fact the question needs is a column or a computation over columns in `schema`.
+      "false": The question needs a prediction, an opinion, a date after the reference date, or information not in any listed column.
+
+  gen_one_reading:
+    type: noul
+    instructions: >
+      Does `candidate.input` have exactly one reasonable reading, so that two careful people
+      would compute the same answer?
+    criteria:
+      "true": The question names the entity, the measure and any period or filter without ambiguity.
+      "false": The question could mean two different computations (for example "biggest customer" by count or by amount), or leaves a period or a filter unstated.
+
+  gen_sql_matches:
+    type: noul
+    instructions: >
+      Does this SQL compute exactly what `candidate.input` asks for? SQL: {sql}
+    criteria:
+      "true": The SQL selects the same entity, measure, filter and ordering the question asks for; a different but equivalent formulation still counts.
+      "false": The SQL answers a different question, drops a filter, uses a different measure, or returns more than the question asks.
+
+  gen_expected_in_outputs:
+    type: noul
+    instructions: >
+      The expected answer to `candidate.input` is "{expected}". Would an agent that runs the
+      right query see this exact value in the query result, without further calculation?
+    criteria:
+      "true": The value is a column value or an id/name that a correct query returns as-is.
+      "false": The value must be computed, rounded, reformatted or inferred from what the query returns.
+
+  gen_duplicate:
+    type: noul
+    instructions: >
+      Do `candidate.input` and `existing.{other_id}` ask for the same thing, so that one correct
+      answer would satisfy both?
+    criteria:
+      "true": Same entity, same measure, same filter; wording may differ.
+      "false": Different entity, measure, period, filter or category, even if the topic is close.

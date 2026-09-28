@@ -1,0 +1,156 @@
+{
+  "loop_id": "2026-09-17T162024+0000",
+  "started": "2026-09-17T162024+0000",
+  "git_sha_start": "97420c9",
+  "params": {
+    "max_iterations": 3,
+    "max_total_eur": 1.3,
+    "min_gain_per_eur": 0.03,
+    "window": 3,
+    "feedback_weight": 2.0,
+    "tolerance": {
+      "lookup": 0.14285714285714285,
+      "aggregation": 0.14285714285714285,
+      "reasoning": 0.125,
+      "refusal": 0.125
+    },
+    "seed": 42
+  },
+  "models": {
+    "agent": "claude-haiku-4-5-20251001",
+    "judge": "claude-sonnet-4-6",
+    "optimizer": "claude-sonnet-4-6"
+  },
+  "iterations": [
+    {
+      "n": 0,
+      "hyp_id": null,
+      "sha": "97420c9",
+      "target": null,
+      "title": "baseline",
+      "verdict": "baseline",
+      "reason": null,
+      "visible": 0.8387,
+      "holdout": 0.8,
+      "per_category_visible": {
+        "aggregation": 1.0,
+        "lookup": 0.75,
+        "reasoning": 0.625,
+        "refusal": 1.0
+      },
+      "visible_delta": null,
+      "holdout_delta": null,
+      "delta_cases": {},
+      "cost_eur": {
+        "eval": 0.2598,
+        "optimizer": 0.0,
+        "total": 0.2598
+      },
+      "cumulative_eur": 0.2598,
+      "results_file": "evals/results/2026-09-17T162025+0000.json",
+      "best_visible": 0.8387
+    },
+    {
+      "n": 11,
+      "hyp_id": "hyp/11",
+      "sha": "e3b58f9",
+      "target": "system.md",
+      "title": "Fix country code lookup: teach agent that country is stored as ISO 2-letter code",
+      "verdict": "rejected: holdout",
+      "reason": "holdout",
+      "visible": 0.9355,
+      "holdout": 0.7,
+      "per_category_visible": {
+        "aggregation": 1.0,
+        "lookup": 1.0,
+        "reasoning": 0.75,
+        "refusal": 1.0
+      },
+      "visible_delta": 0.0968,
+      "holdout_delta": -0.10000000000000009,
+      "delta_cases": {
+        "lookup": 2,
+        "aggregation": 0,
+        "reasoning": 1,
+        "refusal": 0
+      },
+      "cost_eur": {
+        "eval": 0.2582,
+        "optimizer": 0.0419,
+        "total": 0.3001
+      },
+      "cumulative_eur": 0.5599,
+      "results_file": "evals/results/2026-09-17T162138+0000.json",
+      "best_visible": 0.8387
+    },
+    {
+      "n": 12,
+      "hyp_id": "hyp/12",
+      "sha": "fe31e56",
+      "target": "tools.yaml",
+      "title": "Fix country code lookup via tools.yaml hint (not system.md)",
+      "verdict": "accepted",
+      "reason": null,
+      "visible": 0.9355,
+      "holdout": 0.8,
+      "per_category_visible": {
+        "aggregation": 1.0,
+        "lookup": 1.0,
+        "reasoning": 0.75,
+        "refusal": 1.0
+      },
+      "visible_delta": 0.0968,
+      "holdout_delta": 0.0,
+      "delta_cases": {
+        "lookup": 2,
+        "aggregation": 0,
+        "reasoning": 1,
+        "refusal": 0
+      },
+      "cost_eur": {
+        "eval": 0.2622,
+        "optimizer": 0.0355,
+        "total": 0.2977
+      },
+      "cumulative_eur": 0.8577,
+      "results_file": "evals/results/2026-09-17T163314+0000.json",
+      "best_visible": 0.9355
+    },
+    {
+      "n": 13,
+      "hyp_id": "hyp/13",
+      "sha": "bb5b760",
+      "target": "system.md",
+      "title": "Teach agent to compute elapsed days for overdue invoices using compute tool",
+      "verdict": "rejected: leaks_expected R03:2026",
+      "reason": "leaks_expected R03:2026",
+      "visible": null,
+      "holdout": null,
+      "per_category_visible": null,
+      "visible_delta": null,
+      "holdout_delta": null,
+      "delta_cases": {},
+      "cost_eur": {
+        "eval": 0.0,
+        "optimizer": 0.0406,
+        "total": 0.0406
+      },
+      "cumulative_eur": 0.8983,
+      "results_file": null,
+      "best_visible": 0.9355
+    }
+  ],
+  "stop": {
+    "reason": "max_iterations",
+    "at": 13
+  },
+  "feedback": {
+    "FB01": {
+      "ref": "L09",
+      "note": "Asked for customers in Italy: the answer lists nobody. The ledger has Italian customers; country is stored as a code, not a name.",
+      "flagged_before_iteration": 11,
+      "recovered_at_iteration": 12,
+      "iterations_to_recover": 2
+    }
+  }
+}

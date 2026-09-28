@@ -1,0 +1,9 @@
+# Generated candidates awaiting review (evals/generate.py). Fill `decision` with
+# accept | reject and `review.minutes` with the minutes spent on this batch, then
+# `just generate --apply`. Jev verdicts are evidence: do not edit them. Only
+# `source: hand` records may carry `split: holdout`. The optimizer never reads this
+# file.
+review:
+  batch: '2026-09-28'
+  minutes: null
+candidates: []

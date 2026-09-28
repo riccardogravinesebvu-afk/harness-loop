@@ -1,0 +1,9 @@
+feedback:
+- id: FB01
+  verdict: bad
+  note: 'Asked for customers in Italy: the answer lists nobody. The ledger has Italian
+    customers; country is stored as a code, not a name.'
+  trace_id: ea234511bd5b023e10a986ceec5d4333
+  ts: '2026-09-17T16:20:13+00:00'
+  results_file: evals/results/2026-09-17T085633+0000.json
+  ref: L09

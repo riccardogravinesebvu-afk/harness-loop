@@ -1,0 +1,9 @@
+run_sql: |
+  Run a SQL query on the ledger database. Only SELECT queries are allowed.
+  Note: the `country` column stores ISO 3166-1 alpha-2 codes (e.g. 'IT' for Italy, 'DE' for Germany, 'ES' for Spain, 'NL' for Netherlands, 'SE' for Sweden, 'CH' for Switzerland, 'IE' for Ireland), not full country names.
+lookup_customer: |
+  Look up a customer by name.
+compute: |
+  Evaluate an arithmetic expression.
+final_answer: |
+  Give the final answer to the user.
